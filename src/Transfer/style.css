@@ -1,0 +1,26 @@
+.transfer-color {
+    background: #ffffff;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
+    border-radius: 25px;
+  }
+
+  .transfer-color-sub {
+    background: #ffffff;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
+    border-radius: 25px;
+  }
+
+  .search-input {
+    font-family: Nunito Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 23px;
+    box-shadow: none !important;
+  }
+
+  .text-color{
+    color: black;
+    
+  }
+  

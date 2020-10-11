@@ -1,0 +1,36 @@
+.profile-color {
+  background: #ffffff;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
+  border-radius: 25px;
+  height: 585px;
+}
+
+.btn-menu {
+  background: #e5e8ed;
+  border-radius: 10px;
+  height: 50px;
+}
+
+.text-menu{
+  color: black;
+}
+
+.text-number{
+  text-align: center;
+  opacity: 40%;
+}
+
+.text-edit{
+  font-size: 12px;
+  text-align: center;
+  opacity: 40%;
+  color: black;
+}
+
+.margin-nav{
+  margin-bottom: 190px;
+}
+
+.margin-menu{
+  margin-top: 50px;
+}

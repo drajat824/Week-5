@@ -1,0 +1,10 @@
+.headerStyle {
+    background: #FFFFFF;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
+    border-radius: 25px;
+};
+    
+.text-logo{
+    font-size: 4000px;
+    font-style: italic;
+  }

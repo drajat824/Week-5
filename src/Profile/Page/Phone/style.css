@@ -1,0 +1,41 @@
+.transfer-color-profile-phone {
+    background: #ffffff;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
+    border-radius: 25px;
+    height: 585px;;
+  }
+
+  .transfer-color-sub {
+    background: #ffffff;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
+    border-radius: 25px;
+  }
+
+  .btn-continue-confirmation{
+    background: #6379F4;
+    box-shadow: 0px 6px 75px rgba(100, 87, 87, 0.05);
+    border-radius: 12px;
+    border: 0;
+    height: 40px;
+    width: 160px;
+  }
+
+  .btn-menu-password {
+    background: #e5e8ed;
+    border-radius: 10px;
+    height: 50px;
+    text-align: center;
+  }
+
+  .input-pw{
+    width: 250px;
+    border: 0;
+    box-shadow: none;
+  }
+
+  .text-style-phone{
+    font-weight: bold;
+    color: rgba(136, 136, 143, 1);
+    ;
+  }
+  

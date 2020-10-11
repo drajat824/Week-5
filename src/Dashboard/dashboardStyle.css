@@ -1,0 +1,26 @@
+.dashboard-color {
+    background: #ffffff;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
+    border-radius: 25px;
+  }
+
+.balance-color{
+background: #6379F4;
+border-radius: 20px;
+}
+
+.balance-text{
+  font-size: 50px;
+}
+
+.btn-ballance {
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid #ffffff;
+  box-sizing: border-box;
+  border-radius: 10px;
+  width: 130px;
+}
+
+.text-bal{
+  color: white;
+}

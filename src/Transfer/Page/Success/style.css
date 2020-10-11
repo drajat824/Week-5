@@ -1,0 +1,64 @@
+.transfer-color-success {
+    background: #ffffff;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
+    border-radius: 25px;
+  }
+
+  .input-money{
+    border: none; color: #6379F4; 
+    font-size: 42px;  
+    outline: none; 
+    text-align: center; 
+    max-width: 300px;
+  }
+
+  .input-notes{
+    color: blue;
+    border: 0; 
+    font-size: 15px;  
+    outline: 0;
+    width: 230px;
+  }
+
+  .text-avail{
+    margin-top: 30px; 
+    margin-bottom: 30px;
+    text-align: center;
+  }
+
+  .btn-continue-success{
+    background: #6379F4;
+    border-radius: 12px; 
+    border: 0;
+    height: 40px;
+  }
+
+.text-style{
+  font-weight: bold;
+  }
+
+.img-success{
+  width: 100px;
+  }
+
+.btn-download-success{
+  background: rgba(99, 121, 244, 0.15); 
+  border-radius: 12px; 
+  border: 0;
+  height: 40px;
+}
+
+.btn-share{
+  background: rgba(99, 121, 244, 0.15); 
+    border-radius: 12px; 
+    border: 0;
+    height: 40px;
+}
+
+.text-back-success{
+color: white;
+}
+
+.text-download{
+  color: #6379F4;;
+  }

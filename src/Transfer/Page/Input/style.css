@@ -1,0 +1,47 @@
+.transfer-color {
+    background: #ffffff;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
+    border-radius: 25px;
+    height: 585px;
+  }
+
+  .transfer-color-sub {
+    background: #ffffff;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
+    border-radius: 25px;
+  }
+
+  .input-money{
+    border: none; color: #6379F4; 
+    font-size: 42px;  
+    outline: none; 
+    text-align: center; 
+    max-width: 300px;
+  }
+
+  .input-notes{
+    color: blue;
+    border: 0; 
+    font-size: 15px;  
+    outline: 0;
+    width: 230px;
+  }
+
+  .text-avail{
+    margin-top: 30px; 
+    margin-bottom: 30px;
+    text-align: center;
+  }
+
+  .btn-continue-input{
+    background: #6379F4;
+    box-shadow: 0px 6px 75px rgba(100, 87, 87, 0.05);
+    border-radius: 12px;
+    border: 0;
+    height: 60px;
+    width: 150px;
+  }
+
+  .text-btn-input{
+    color: white;
+  }
