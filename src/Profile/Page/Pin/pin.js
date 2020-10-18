@@ -4,23 +4,40 @@ import "./style.css";
 import { Link } from "react-router-dom";
 import qs from 'qs'
 import Axios from "axios";
+import { Navigation } from "../../../Components/Navigation";
+import jwt from "jsonwebtoken";
 
-const Pin = (props) => {
+
+const Content = (props) => {
+
+  const TOKEN_KEY = "Auth";
+  let role_id = "";
+  let myId = "";
+  
+  let token = localStorage.getItem(TOKEN_KEY);
+  let salt = "ARKADMY";
+  
+  jwt.verify(token, salt, (err, decode) => {
+    if(!err){
+      myId = decode.id
+    } else {
+      console.log(err)
+    }
+  });
 
   const [pin, setPin] = useState("")
-  // const [pin2]= useState("")
-  
 
   const onSubmit = () => {
 
     Axios({
     method: 'patch', 
-    url: 'http://localhost:2000/profile/1',
+    url: `${process.env.REACT_APP_URL_BACKEND}/api/v1/profile/id/${myId}`,
     data: qs.stringify({
       pin: pin
     }),
     headers: {
-      'content-type': 'application/x-www-form-urlencoded;charset=utf-8'
+      'content-type': 'application/x-www-form-urlencoded;charset=utf-8',
+      'auth' : token
     }
   })
     .then((res) => {
@@ -88,4 +105,21 @@ const Pin = (props) => {
   );
 };
 
-export default Pin;
+const ProfilePin = (props) => {
+  return (
+    <>
+      <section class="my-5 container">
+        <div class="row">
+          <Col lg={3}>
+            <Navigation {...props} />
+          </Col>
+          <Col>
+            <Content/>
+          </Col>
+        </div>
+      </section>
+    </>
+  );
+};
+
+export default ProfilePin;

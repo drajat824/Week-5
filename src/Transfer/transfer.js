@@ -1,45 +1,57 @@
-import React, { Component } from "react";
-import { Container, Form, Image, Control, InputGroup, Text, FormControl, Prepend } from "react-bootstrap";
+import React, { setState, useState } from "react";
+import { Col, Container, Form, Image, Control, InputGroup, Text, FormControl, Prepend } from "react-bootstrap";
 import "./style.css";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Axios from "axios";
+import { Navigation } from "../Components/Navigation";
+import jwt from "jsonwebtoken";
+import Loading from "../Components/Loading";
 
-class transfer extends React.Component {
+const Content = () => {
 
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     aboutId: 2
-  //   }
-  // }
 
-  state = {
-    data: [],
-    name: this.props.location.search || null,
-    name2: this.props.location.search.slice(6) || null,
-    
-  };
+  const TOKEN_KEY = "Auth";
+  let token = localStorage.getItem(TOKEN_KEY);
+  let myId = "";
+  let salt = "ARKADMY";
+
+  let name = useLocation().search.slice(6) || null
+  // let name2 = useLocation().search.slice(6) || null
+
+  const [data, SetData] = useState("");
   
-  componentDidMount() {
-    Axios.get(this.state.name
-      ?`http://localhost:2000/transfer/search${this.state.name}`
-      :`http://localhost:2000/transfer/`
+  jwt.verify(token, salt, (err, decode) => {
+    if(!err){
+      myId = decode.id
+    } else {
+      console.log(err)
+    }
+  });
 
+  const headers = {headers: {'auth' : token}}
   
-    ).then((res) => {
-      this.setState({ data: res.data.data });
-      console.log(res.data)
-    })
-    .catch((err) => {
-      console.log(err.message);
-    });
-    
-  }
-  render() {
+
+  React.useEffect(() => {
+
+    if(name){
+    Axios.get(`${process.env.REACT_APP_URL_BACKEND}/api/v1/profile/search?name=${name}`, headers)
+
+      .then((res) => SetData(res.data.data))
+      .catch((err) => console.log(err));
+    } else {
+      Axios.get(`${process.env.REACT_APP_URL_BACKEND}/api/v1/profile?page=1&limit=4`, headers)
+
+      .then((res) => SetData(res.data.data))
+      .catch((err) => console.log(err));
+    }
+
+  }, []);
+
+  console.log(data)
 
     return (
       <>
-        <Container className="transfer-color mt-4">
+        <Container className="transfer-color">
           <div className="p-2">Search Receiver</div>
 
         
@@ -52,38 +64,54 @@ class transfer extends React.Component {
                   <Image src={require("../Assets/search.png")} />
                 </InputGroup.Text>
                 </InputGroup.Prepend>
-              <FormControl value={this.state.name2} onChange={(e) => this.setState({ name2: e.target.value })}
-              className=" search-input" placeholder="Search receiver here" name='name'/>
+
+              <FormControl className=" search-input" placeholder="Search receiver here" name='name'/>
+
                </InputGroup>
             </Form.Group>
             </Form>
             </div>
-          {this.state.data.map((item, index) => {
-            return (
+
+            { !data? (<Loading />) : (data.map(item => ( 
 
                 <div className="p-2">
-                  <Link to = {
-                    {pathname: "/input", state: item.id}}>
+                  <Link path="/input">
                     <div className="transfer-color-sub nav-profile form-inline my-3 my-lg-0 pl-3 pt-3 pb-3">
                       <Image
                         className="mr-sm-2"
                         src={require("../Assets/picture.png")}
                       />
                       <ul className="navbar-nav mr-sm-0 text-color">
-                        <li>{item.first_name} {item.last_name}</li>
-                        <li>{item.phone}</li>
+                       <li>{item.first_name} {item.last_name}</li>
+                        <li>{item.phone ? (item.phone) : ("+62")}</li>
                       </ul>
                     </div>
                   </Link>
                 </div>
 
-            );
-          })}
+            )))}
           
         </Container>
       </>
     );
-  }
+  
 }
+
+const transfer = (props) => {
+  return (
+    <>
+      <section class="my-5 container">
+        <div class="row">
+          <Col lg={3}>
+            <Navigation {...props} />
+          </Col>
+          <Col>
+            <Content />
+          </Col>
+        </div>
+      </section>
+    </>
+  );
+};
 
 export default transfer

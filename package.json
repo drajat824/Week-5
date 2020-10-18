@@ -8,10 +8,13 @@
     "@testing-library/user-event": "^7.1.2",
     "axios": "^0.20.0",
     "bootstrap": "^4.5.2",
+    "dotenv": "^8.2.0",
+    "jsonwebtoken": "^8.5.1",
     "react": "^16.13.1",
     "react-bootstrap": "^1.3.0",
     "react-data-fetcher": "^0.0.1",
     "react-dom": "^16.13.1",
+    "react-placeholder": "^4.0.3",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
     "typeface-nunito-sans": "^1.1.13"

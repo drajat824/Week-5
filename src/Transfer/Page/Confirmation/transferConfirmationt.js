@@ -20,13 +20,13 @@ class TransferConfirmation extends React.Component {
   }
 
   componentDidMount() {
-    Axios.get(`http://localhost:2000/transfer/id/${this.aboutId}`)
+    Axios.get(`${process.env.REACT_APP_URL_BACKEND}transfer/id/${this.aboutId}`)
     .then((res) => {
         this.setState({ data: res.data.data });
       }
     );
 
-    Axios.get(`http://localhost:2000/profile/1`)
+    Axios.get(`${process.env.REACT_APP_URL_BACKEND}profile/1`)
     .then((res) => {
       this.setState({ data2: res.data.data });
     });
@@ -41,6 +41,9 @@ class TransferConfirmation extends React.Component {
     const closeModal = () => {
       this.setState({ show: false });
     };
+
+    console.log(this.aboutId)
+    
     return (
       <>
         

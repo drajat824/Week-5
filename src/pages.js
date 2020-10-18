@@ -1,5 +1,6 @@
+import Login from './Login'
+import Forgot from './Login/Page/Forgot'
 import Dashboard from './Dashboard'
-import SubDashboard from './Dashboard/Sub History'
 import DashboardHistory from './Dashboard/Page/History'
 import Transfer from './Transfer'
 import TransferInput from './Transfer/Page/Input'
@@ -11,6 +12,10 @@ import ProfilePersonal from './Profile/Page/Personal'
 import ProfilePassword from './Profile/Page/Password'
 import ProfileAddPhone from './Profile/Page/Phone'
 import Pin from './Profile/Page/Pin'
+import Admin from './Admin'
+import Register from './Register'
+import Landing from './Landing'
+
 
 
 
@@ -27,6 +32,10 @@ export {
     ProfilePassword,
     ProfileAddPhone,
     Pin,
-    SubDashboard,
-    DashboardHistory
+    DashboardHistory,
+    Login,
+    Admin,
+    Register,
+    Landing,
+    Forgot
 }

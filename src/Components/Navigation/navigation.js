@@ -1,15 +1,15 @@
 import React from "react";
 import { Container, Row, Col, Image } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
+import { logout } from "../../Utils";
+
 
 import "./navigationStyle.css";
 
-const navigation = (props) => {
+const Content = (props) => {
   return (
     <>
-      <Container className="mt-4">
-        <Row>
-          <Col className="navigation-color">
+          <div className="navigation-color">
             <Container>
               <div className="d-flex align-items-start flex-column">
                 <div className="mb-auto p-2">
@@ -65,17 +65,32 @@ const navigation = (props) => {
                         src={require("../../Assets/logout.png")}
                       />
                       <span className="text-menu">
-                        <Link to="/login">Logout</Link>
+                      <Link onClick={()=> props.onLogout()} >Logout</Link>
                       </span>
                     </div>
+                    
                   </div>
                 </div>
               </div>
             </Container>
-          </Col>
-        </Row>
-      </Container>
+          </div>
     </>
-  );
+  )
+}
+
+  const Navigation = (props) => {
+
+    let location = useLocation();
+    let history = useHistory();
+  
+    const onLogout = ()=> {
+      logout()
+      history.replace('/login')
+    }
+
+    return (
+      <Content location={location} onLogout={onLogout} />
+    );
 };
-export default navigation;
+
+export default Navigation;

@@ -5,8 +5,26 @@ import Axios from "axios";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import qs from 'qs'
+import { Navigation } from "../../../Components/Navigation";
+import jwt from "jsonwebtoken";
 
-const ProfilePassword = () => {
+
+const Content = () => {
+
+  const TOKEN_KEY = "Auth";
+  let role_id = "";
+  let myId = "";
+  
+  let token = localStorage.getItem(TOKEN_KEY);
+  let salt = "ARKADMY";
+  
+  jwt.verify(token, salt, (err, decode) => {
+    if(!err){
+      myId = decode.id
+    } else {
+      console.log(err)
+    }
+  });
 
 const [password, setPassword] = useState("")
 
@@ -14,12 +32,13 @@ const [password, setPassword] = useState("")
 
     Axios({
     method: 'patch', 
-    url: 'http://localhost:2000/profile/1',
+    url: `${process.env.REACT_APP_URL_BACKEND}/api/v1/profile/id/${myId}`,
     data: qs.stringify({
       password: password
     }),
     headers: {
-      'content-type': 'application/x-www-form-urlencoded;charset=utf-8'
+      'content-type': 'application/x-www-form-urlencoded;charset=utf-8',
+      'auth' : token
     }
   })
     .then((res) => {
@@ -93,6 +112,23 @@ const [password, setPassword] = useState("")
     </>   
   );
   
+};
+
+const ProfilePassword = (props) => {
+  return (
+    <>
+      <section class="my-5 container">
+        <div class="row">
+          <Col lg={3}>
+            <Navigation {...props} />
+          </Col>
+          <Col>
+            <Content/>
+          </Col>
+        </div>
+      </section>
+    </>
+  );
 };
 
 export default ProfilePassword;

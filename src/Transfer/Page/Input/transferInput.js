@@ -11,39 +11,40 @@ const TransferInput = (props) => {
   const[aboutId] = useState(props.location.state)
   const [data, SetData] = useState({data: [] });
   const [data2, SetData2] = useState({data: [] });
+  const [data3, SetData3] = useState({data: [] });
   const [date, SetDate] = useState();
   const [notes, setNotes] = useState("")
   const [amount, setAmount] = useState("")
 
   React.useEffect(() => {
-    Axios.get(`http://localhost:2000/transfer/id/${aboutId}`)
+    Axios.get(`${process.env.REACT_APP_URL_BACKEND}profile/${aboutId}`)
       .then((res) => {
         SetData(res.data);
-        console.log(res.data.data)
       })
       .catch((err) => console.log(err.message));
-  });
+  }, []);
 
   React.useEffect(() => {
-    Axios.get(`http://localhost:2000/profile/1`)
+    Axios.get(`${process.env.REACT_APP_URL_BACKEND}profile/1`)
       .then((res) => {
         SetData2(res.data);
       })
       .catch((err) => console.log(err.message));
-  });
-
-
-  
+  }, []);
 
   const onSubmit = () => {
 
     Axios({
-    method: 'patch', 
-    url: `http://localhost:2000/transfer/${aboutId}`,
+    method: 'post', 
+    url: `${process.env.REACT_APP_URL_BACKEND}transfer`,
     data: qs.stringify({
+      id_sender: 1,
+      id_receiver: aboutId,
       amount: amount,
       notes: notes,
       date: date,
+    }) .then((res) => {
+      SetData3(res.data);
     }),
     headers: {
       'content-type': 'application/x-www-form-urlencoded;charset=utf-8'
@@ -55,9 +56,11 @@ const TransferInput = (props) => {
     .catch((err) => console.log(err.message));
   
   }
-  
+
+  console.log(SetData3)
 
   return (
+    
     <>
       <Container className="transfer-color mt-4"> 
         <div className="d-flex flex-column">
@@ -110,7 +113,7 @@ const TransferInput = (props) => {
               </div>
             </div>
           </div>
-          {data.data.map(item => ( 
+          {data2.data.map(item => ( 
         <Container className="d-flex justify-content-end">
           <Link to = {{pathname: "/confirmation", state: item.id}} onClick={() => onSubmit()}>
               <button className="btn-continue-input text-btn-input mr-3">

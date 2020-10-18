@@ -3,13 +3,29 @@ import "./style.css";
 import { Link } from "react-router-dom";
 import React, { useState } from "react";
 import Axios from "axios";
+import { Navigation } from "../../../Components/Navigation";
+import jwt from "jsonwebtoken";
 
-const ProfilePersonal = (props) => {
+const Content = (props) => {
 
-  const [data, SetData] = useState({data: [] });
+const TOKEN_KEY = "Auth";
+let token = localStorage.getItem(TOKEN_KEY);
+let salt = "ARKADMY";
+const headers = {headers: {'auth' : token}}
+let myId = "";
+
+const [data, SetData] = useState({data: [] });
+
+  jwt.verify(token, salt, (err, decode) => {
+    if(!err){
+      myId = decode.id
+    } else {
+      console.log(err)
+    }
+  });
 
   React.useEffect(() => {
-    Axios.get(`http://localhost:2000/profile/1`)
+    Axios.get(`${process.env.REACT_APP_URL_BACKEND}/api/v1/profile/id/${myId}`, headers)
       .then((res) => {
         SetData(res.data);
         console.log(res.data.data)
@@ -81,6 +97,23 @@ const ProfilePersonal = (props) => {
         </div>
       </Container>
        ))}
+    </>
+  );
+};
+
+const ProfilePersonal = (props) => {
+  return (
+    <>
+      <section class="my-5 container">
+        <div class="row">
+          <Col lg={3}>
+            <Navigation {...props} />
+          </Col>
+          <Col>
+            <Content/>
+          </Col>
+        </div>
+      </section>
     </>
   );
 };
